@@ -1,0 +1,5 @@
+# build dirs in cpp subfolders
+*/cpp/build
+
+# pycache dirs in python subfolders
+*/python/__pycache__
