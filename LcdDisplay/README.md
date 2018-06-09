@@ -8,13 +8,7 @@ Rules
 =====
 
 Write a class called LcdDisplay with a single public method called convert_to_lcd().
-An lcd digit should be one unit wide and two units high.
-3 would be:
-         -
-          |
-         -
-          |
-         -
+An lcd digit should be one unit wide and two units high.   
 
 1: The class should be able to convert a single number
 2: The class should be able to convert a multi digit number separated by one column space.
@@ -27,10 +21,10 @@ Pass a spacing value to the method.
 Example
 =======
 
-std::string number = "1234567890";
-int scale = 2;
-int space_between_digits = 2
-std::string output = LcdDisplay::convert_to_lcd(number, scale, space_between_digits); // would return a string of:
+std::string number = "1234567890";   
+int scale = 2;  
+int space_between_digits = 2  
+std::string output = LcdDisplay::convert_to_lcd(number, scale, space_between_digits); // would return a string of:  
 
         --   --          --    --   --    --    --    --
     |     |    |  |  |  |     |       |  |  |  |  |  |  |
