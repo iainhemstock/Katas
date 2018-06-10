@@ -3,3 +3,4 @@
 
 # pycache dirs in python subfolders
 */python/__pycache__
+*/python/*.pyc
