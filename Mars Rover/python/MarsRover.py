@@ -1,10 +1,18 @@
-class MarsRover():
-    def execute(self, commands):
-        direction = 'N'
-        for cammand in commands:
-            if direction == 'W': direction = 'N'
-            elif direction == 'S': direction = 'W'
-            elif direction == 'E': direction = 'S'
-            elif direction == 'N': direction = 'E'
+from Direction import Direction
+from Coordinate import Coordinate
 
-        return '0:0:' + direction
+class MarsRover():
+    def execute(self, commandSequence):
+        coord = Coordinate(0,0)
+        direction = Direction('N')
+
+        for command in commandSequence:
+            if command == 'M': coord.move(direction)
+            elif command == 'R': direction.rotateRight()
+            elif command == 'L': direction.rotateLeft()
+
+        return str('{0}:{1}:{2}').format(
+            coord.x(),
+            coord.y(),
+            direction.current()
+        )
