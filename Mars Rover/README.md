@@ -16,7 +16,7 @@ e.g. 2:3:N means x pos is 2, y pos is 3 and is currently facing north
 
 Rules
 =====
-1: N is the initial direction it is facing (i.e. N, E, S, W)
+1: Starting position is 0:0:N, i.e. x=y=0 and facing north
 2: L and R allow the rover to rotate left and right
 3: M allows the rover to move one unit in the current direction.
 4: The rover receives a sequence of commands e.g. "RMMLM" rotates to the right, moves two units,
