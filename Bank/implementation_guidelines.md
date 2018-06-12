@@ -1,3 +1,5 @@
+https://github.com/sandromancuso/bank-kata-outsidein-screencast/blob/master/implementation_guidelines.md
+
 Implementation Guidelines
 =========================
  
