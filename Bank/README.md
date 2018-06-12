@@ -1,3 +1,5 @@
+https://github.com/sandromancuso/bank-kata-outsidein-screencast/blob/master/README.md
+
 Outside-In TDD with Acceptance Tests
 ====================================
 
