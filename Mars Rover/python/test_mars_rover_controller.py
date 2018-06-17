@@ -1,9 +1,9 @@
 from unittest import TestCase
-from MarsRover import MarsRover
+from MarsRoverController import MarsRoverController
 
-class MarsRoverShould(TestCase):
+class MarsRoverControllerShould(TestCase):
     def setUp(self):
-        self.rover = MarsRover()
+        self.rover = MarsRoverController()
 
     def test_rotate_right_once(self):
         self.assertEqual(self.rover.execute('R'), '0:0:E')

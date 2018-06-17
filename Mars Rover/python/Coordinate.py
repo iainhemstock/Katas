@@ -1,3 +1,5 @@
+from Move import MoveFactory
+
 class Coordinate():
     GRID_MAX = 10
 
@@ -11,14 +13,8 @@ class Coordinate():
     def y(self):
         return self.__y
 
-    def move(self, direction):
-        if direction.current() == 'N': self.__advanceVerticallyBy(1)
-        elif direction.current() == 'S': self.__advanceVerticallyBy(-1)
-        elif direction.current() == 'E': self.__advanceHorizontallyBy(1)
-        elif direction.current() == 'W': self.__advanceHorizontallyBy(-1)
-
-    def __advanceVerticallyBy(self, amount):
+    def advanceVerticallyBy(self, amount):
         self.__y = (self.__y + amount) % Coordinate.GRID_MAX
 
-    def __advanceHorizontallyBy(self, amount):
+    def advanceHorizontallyBy(self, amount):
         self.__x = (self.__x + amount) % Coordinate.GRID_MAX
