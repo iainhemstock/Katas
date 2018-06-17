@@ -6,7 +6,7 @@ class MoveFactory:
         if direction == 'W': return MoveHorizontally(-1)
 
 class Move:
-    def advance(self, coord):
+    def advance(self, amount):
         raise NotImplementedError()
 
 class MoveHorizontally(Move):
