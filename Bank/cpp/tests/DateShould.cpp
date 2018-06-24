@@ -5,16 +5,16 @@ using namespace ::testing;
 class TestableDate : public Date
 {
 public:
-        tm* today() const
+        std::tm today()
         {
-                time_t rawTime;
-                struct tm * timeInfo = localtime(&rawTime);
-                timeInfo->tm_mday = 12;
-                timeInfo->tm_mon = 2;
-                timeInfo->tm_year = 113;
+                this->timeInfo.tm_mday = 12;
+                this->timeInfo.tm_mon = 2;
+                this->timeInfo.tm_year = 113;
 
-                return timeInfo;
+                return this->timeInfo;
         }
+private:
+
 };
 
 class DateShould : public Test

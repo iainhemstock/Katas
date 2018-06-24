@@ -6,7 +6,7 @@
 class IDate
 {
 public:
-        virtual const std::string todayAsString() const = 0;
+        virtual const std::string todayAsString() = 0;
 };
 
 #endif

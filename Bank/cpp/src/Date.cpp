@@ -1,24 +1,22 @@
 #include "Date.h"
 
 const std::string
-Date::todayAsString() const
+Date::todayAsString()
 {
-        struct tm * timeInfo = today();
+        std::tm timeInfo = today();
         char buffer[80];
 
-        strftime(buffer, 80, "%d/%m/%Y", timeInfo);
+        strftime(buffer, 80, "%d/%m/%Y", &timeInfo);
 
         return std::string(buffer);
 }
 
-tm*
-Date::today() const
+std::tm
+Date::today()
 {
         time_t rawTime;
-        struct tm * timeInfo;
-
         time(&rawTime);
-        timeInfo = localtime(&rawTime);
+        this->timeInfo = *localtime(&rawTime);
 
-        return timeInfo;
+        return this->timeInfo;
 }

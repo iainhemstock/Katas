@@ -6,7 +6,7 @@
 class MockDate : public IDate
 {
 public:
-        MOCK_CONST_METHOD0(todayAsString, const std::string());
+        MOCK_METHOD0(todayAsString, const std::string());
 };
 
 #endif

@@ -7,9 +7,11 @@
 class Date : public IDate
 {
 public:
-        const std::string todayAsString() const;
+        const std::string todayAsString();
 protected:
-        virtual tm* today() const;
+        virtual std::tm today();
+protected:
+        std::tm timeInfo;
 };
 
 #endif
