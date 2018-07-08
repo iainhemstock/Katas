@@ -1,6 +1,13 @@
+*/.DS_Store
+.DS_Store
+
 # build dirs in cpp subfolders
 */cpp/build
 
 # pycache dirs in python subfolders
 */python/__pycache__
 */python/*.pyc
+
+# IntelliJ project files
+*/*/.idea/*
+target/
