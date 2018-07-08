@@ -26,14 +26,14 @@ public class AccountShould {
 
     @Test
     public void store_a_deposit_transaction() {
-        Money amount = new Money(100);
+        TransactionAmount amount = new TransactionAmount(100);
         this.account.deposit(amount);
         verify(transactionRepository).addDeposit(amount);
     }
 
     @Test
     public void store_a_withdrawal_transaction() {
-        Money amount = new Money(100);
+        TransactionAmount amount = new TransactionAmount(100);
         this.account.withdraw(amount);
         verify(transactionRepository).addWithdrawal(amount);
     }

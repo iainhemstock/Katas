@@ -5,11 +5,11 @@ import java.util.Objects;
 public class Transaction {
 
     private final TransactionDate transactionDate;
-    private final Money money;
+    private final TransactionAmount transactionAmount;
 
-    public Transaction(TransactionDate transactionDate, Money money) {
+    public Transaction(TransactionDate transactionDate, TransactionAmount transactionAmount) {
         this.transactionDate = transactionDate;
-        this.money = money;
+        this.transactionAmount = transactionAmount;
     }
 
     @Override
@@ -18,13 +18,13 @@ public class Transaction {
         if (o == null || getClass() != o.getClass()) return false;
         Transaction that = (Transaction) o;
         return Objects.equals(transactionDate, that.transactionDate) &&
-                Objects.equals(money, that.money);
+                Objects.equals(transactionAmount, that.transactionAmount);
     }
 
     @Override
     public int hashCode() {
 
-        return Objects.hash(transactionDate, money);
+        return Objects.hash(transactionDate, transactionAmount);
     }
 
     public void addDateToStringBuilder(StringBuilder sb) {
@@ -32,10 +32,10 @@ public class Transaction {
     }
 
     public void addAmountToStringBuilder(StringBuilder sb) {
-        sb.append(this.money.toString());
+        sb.append(this.transactionAmount.toString());
     }
 
     public int amountAsInt() {
-        return Integer.parseInt(this.money.toString());
+        return Integer.parseInt(this.transactionAmount.toString());
     }
 }

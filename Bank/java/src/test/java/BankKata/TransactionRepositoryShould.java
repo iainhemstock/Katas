@@ -15,7 +15,7 @@ public class TransactionRepositoryShould {
 
     @Mock private Calendar calendar;
     @Mock private TransactionDate today;
-    private Money amount = new Money(100);
+    private TransactionAmount amount = new TransactionAmount(100);
     private TransactionRepository transactionRepository;
 
     @Before

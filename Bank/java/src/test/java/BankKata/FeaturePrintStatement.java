@@ -33,9 +33,9 @@ public class FeaturePrintStatement {
                 new TransactionDate("10/04/2014")
         );
 
-        account.deposit(new Money(1000));
-        account.withdraw(new Money(100));
-        account.deposit(new Money(500));
+        account.deposit(new TransactionAmount(1000));
+        account.withdraw(new TransactionAmount(100));
+        account.deposit(new TransactionAmount(500));
 
         account.printStatement();
 

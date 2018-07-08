@@ -3,7 +3,7 @@ package BankKata;
 import java.util.List;
 
 public interface TransactionRepository {
-    void addDeposit(Money amount);
-    void addWithdrawal(Money amount);
+    void addDeposit(TransactionAmount amount);
+    void addWithdrawal(TransactionAmount amount);
     List<Transaction> allTransactions();
 }

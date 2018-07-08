@@ -11,12 +11,12 @@ class Account {
         this.statementPrinter = statementPrinter;
     }
 
-    void deposit(Money money) {
-        this.transactionRepository.addDeposit(money);
+    void deposit(TransactionAmount transactionAmount) {
+        this.transactionRepository.addDeposit(transactionAmount);
     }
 
-    void withdraw(Money money) {
-        this.transactionRepository.addWithdrawal(money);
+    void withdraw(TransactionAmount transactionAmount) {
+        this.transactionRepository.addWithdrawal(transactionAmount);
     }
 
     void printStatement() {

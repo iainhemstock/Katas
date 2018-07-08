@@ -13,18 +13,18 @@ public class InMemoryTransactionRepository implements TransactionRepository {
     }
 
     @Override
-    public void addDeposit(Money money) {
-        addTransaction(money);
+    public void addDeposit(TransactionAmount transactionAmount) {
+        addTransaction(transactionAmount);
     }
 
     @Override
-    public void addWithdrawal(Money money) {
-        addTransaction(money.negated());
+    public void addWithdrawal(TransactionAmount transactionAmount) {
+        addTransaction(transactionAmount.negated());
     }
 
-    private void addTransaction(Money money) {
+    private void addTransaction(TransactionAmount transactionAmount) {
         TransactionDate today = this.calendar.today();
-        Transaction transaction = new Transaction(today, money);
+        Transaction transaction = new Transaction(today, transactionAmount);
         transactions.add(transaction);
     }
 

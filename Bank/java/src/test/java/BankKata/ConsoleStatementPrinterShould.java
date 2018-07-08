@@ -38,7 +38,7 @@ public class ConsoleStatementPrinterShould {
         List<Transaction> singleTransactionList = Arrays.asList(
                 new Transaction(
                         new TransactionDate("21/01/1971"),
-                        new Money(500))
+                        new TransactionAmount(500))
         );
         this.statementPrinter.print(singleTransactionList);
 
@@ -50,9 +50,9 @@ public class ConsoleStatementPrinterShould {
     @Test
     public void print_multiple_transactions_in_reverse_chronological_order() {
         List<Transaction> threeTransactionsList = Arrays.asList(
-                new Transaction(new TransactionDate("01/01/2000"), new Money(50)),
-                new Transaction(new TransactionDate("02/01/2000"), new Money(100)),
-                new Transaction(new TransactionDate("03/01/2000"), new Money(150))
+                new Transaction(new TransactionDate("01/01/2000"), new TransactionAmount(50)),
+                new Transaction(new TransactionDate("02/01/2000"), new TransactionAmount(100)),
+                new Transaction(new TransactionDate("03/01/2000"), new TransactionAmount(150))
         );
         this.statementPrinter.print(threeTransactionsList);
 
