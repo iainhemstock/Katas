@@ -18,11 +18,6 @@ public class TransactionDate {
     }
 
     @Override
-    public int hashCode() {
-        return Objects.hash(date);
-    }
-
-    @Override
     public String toString() {
         return this.date;
     }

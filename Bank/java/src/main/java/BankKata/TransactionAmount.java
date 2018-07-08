@@ -23,12 +23,6 @@ public class TransactionAmount {
     }
 
     @Override
-    public int hashCode() {
-
-        return Objects.hash(amount);
-    }
-
-    @Override
     public String toString() {
         return String.valueOf(this.amount);
     }

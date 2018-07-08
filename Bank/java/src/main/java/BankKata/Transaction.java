@@ -21,12 +21,6 @@ public class Transaction {
                 Objects.equals(transactionAmount, that.transactionAmount);
     }
 
-    @Override
-    public int hashCode() {
-
-        return Objects.hash(transactionDate, transactionAmount);
-    }
-
     public void addDateToStringBuilder(StringBuilder sb) {
         sb.append(this.transactionDate.toString());
     }
