@@ -9,5 +9,4 @@
 */python/*.pyc
 
 # IntelliJ project files
-*/*/.idea/*
 target/
