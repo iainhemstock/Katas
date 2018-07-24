@@ -1,0 +1,4 @@
+dbserver = jdbc:mysql://localhost:8889
+dbname = bank
+dbusername = root
+dbpassword = root
