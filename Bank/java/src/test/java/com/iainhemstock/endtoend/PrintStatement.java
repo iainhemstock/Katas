@@ -32,7 +32,6 @@ public class PrintStatement {
 
     @Before
     public void setup() {
-        System.out.println(new File(".").getAbsoluteFile());
         deleteAllRowsFromTestDatabase();
         when(calendar.today()).thenReturn("01 Apr 14", "02 Apr 14", "10 Apr 14");
         TransactionRepository transactionRepository = new DatabaseTransactionRepository(DB_CONFIG_FILE_PATH, calendar);
