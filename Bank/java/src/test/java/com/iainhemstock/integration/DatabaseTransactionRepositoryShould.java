@@ -3,8 +3,14 @@ package com.iainhemstock.integration;
 import com.iainhemstock.*;
 import org.junit.Before;
 import org.junit.Test;
+import org.mockito.Mock;
+import org.mockito.MockitoAnnotations;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.IOException;
 import java.sql.*;
+import java.util.Properties;
 
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.core.IsEqual.equalTo;
@@ -14,38 +20,38 @@ import static org.mockito.Mockito.mock;
 
 public class DatabaseTransactionRepositoryShould {
 
-    private String server = "jdbc:mysql://localhost:8889/test_bank";
-    private String username = "root";
-    private String password = "root";
+    public static final String DB_CONFIG_FILEPATH = ".dbconfig";
+    private static final String TODAY_dd_MMM_yy_FORMAT = "04 Jul 15";
+    public static final String SQL_DELETE_ALL_ROWS_ = "delete from %s";
 
-    private Calendar calendar = mock(Calendar.class);
-    private static final String TODAY = "04 Jul 15";
+    @Mock private Calendar calendar;
 
     private DatabaseTransactionRepository databaseTransactionRepository;
-    private TransactionDate today;
-    private TransactionAmount amount;
+    private TransactionDate transactionDate;
+    private TransactionAmount transactionAmount;
 
     @Before
     public void setup() {
+        MockitoAnnotations.initMocks(this);
         deleteAllRowsFromTestDatabase();
-        given(calendar.today()).willReturn(TODAY);
-        databaseTransactionRepository = new DatabaseTransactionRepository(server, username, password, calendar);
-        today = new TransactionDate(calendar.today());
-        amount = new TransactionAmount(123.45);
+        given(calendar.today()).willReturn(TODAY_dd_MMM_yy_FORMAT);
+        databaseTransactionRepository = new DatabaseTransactionRepository(DB_CONFIG_FILEPATH, calendar);
+        transactionDate = new TransactionDate(calendar.today());
+        transactionAmount = new TransactionAmount(123.45);
     }
 
     @Test
     public void add_single_deposit_transaction_to_database() {
-        databaseTransactionRepository.addDeposit(amount);
+        databaseTransactionRepository.addDeposit(transactionAmount);
         assertThat(transactionCount(), is(equalTo(1)));
-        assertThat(onlyTransaction(), is(equalTo(new Transaction(amount, today))));
+        assertThat(onlyTransaction(), is(equalTo(new Transaction(transactionAmount, transactionDate))));
     }
 
     @Test
     public void add_single_withdrawal_transaction_to_database() {
-        databaseTransactionRepository.addWithdrawal(amount);
+        databaseTransactionRepository.addWithdrawal(transactionAmount);
         assertThat(transactionCount(), is(equalTo(1)));
-        assertThat(onlyTransaction(), is(equalTo(new Transaction(amount.negated(), today))));
+        assertThat(onlyTransaction(), is(equalTo(new Transaction(transactionAmount.negated(), transactionDate))));
     }
 
     private Transaction onlyTransaction() {
@@ -56,17 +62,25 @@ public class DatabaseTransactionRepositoryShould {
         return databaseTransactionRepository.transactionCount();
     }
 
-    public void deleteAllRowsFromTestDatabase() {
-        try {
-            Connection connection = DriverManager.getConnection(server, username, password);
-            Statement statement = connection.createStatement();
-            String table = "transactions";
-            String query = String.format("delete from %s", table);
-            statement.executeUpdate(query);
+    private void deleteAllRowsFromTestDatabase() {
+        try (FileInputStream input = new FileInputStream(DB_CONFIG_FILEPATH)) {
+            Properties properties = new Properties();
+            properties.load(input);
+            String server = properties.getProperty("dbserver");
+            String username = properties.getProperty("dbusername");
+            String password = properties.getProperty("dbpassword");
+
+            try (
+                    Connection connection = DriverManager.getConnection(server, username, password);
+                    Statement statement = connection.createStatement();
+            ){
+                String table = "transactions";
+                String query = String.format(SQL_DELETE_ALL_ROWS_, table);
+                statement.executeUpdate(query);
+            }
+            catch (SQLException ex) { ex.printStackTrace(); }
         }
-        catch (SQLException ex) {
-            ex.printStackTrace();
-        }
+        catch (IOException ex) { ex.printStackTrace(); }
     }
 
 }
