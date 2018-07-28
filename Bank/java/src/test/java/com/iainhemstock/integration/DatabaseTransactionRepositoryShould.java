@@ -20,7 +20,7 @@ import static org.mockito.Mockito.mock;
 
 public class DatabaseTransactionRepositoryShould {
 
-    public static final String DB_CONFIG_FILEPATH = ".dbconfig";
+    public static final String DB_CONFIG_FILEPATH = "db.conf";
     private static final String TODAY_dd_MMM_yy_FORMAT = "04 Jul 15";
     public static final String SQL_DELETE_ALL_ROWS_ = "delete from %s";
 

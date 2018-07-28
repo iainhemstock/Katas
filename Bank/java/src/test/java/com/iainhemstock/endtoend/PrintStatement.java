@@ -8,6 +8,7 @@ import org.mockito.InOrder;
 import org.mockito.Mock;
 import org.mockito.junit.MockitoJUnitRunner;
 
+import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.sql.Connection;
@@ -22,7 +23,7 @@ import static org.mockito.Mockito.when;
 @RunWith(MockitoJUnitRunner.class)
 public class PrintStatement {
 
-    public static final String DB_CONFIG_FILE_PATH = ".dbconfig";
+    public static final String DB_CONFIG_FILE_PATH = "db.conf";
 
     @Mock private Console console;
     @Mock private Calendar calendar;
@@ -31,6 +32,7 @@ public class PrintStatement {
 
     @Before
     public void setup() {
+        System.out.println(new File(".").getAbsoluteFile());
         deleteAllRowsFromTestDatabase();
         when(calendar.today()).thenReturn("01 Apr 14", "02 Apr 14", "10 Apr 14");
         TransactionRepository transactionRepository = new DatabaseTransactionRepository(DB_CONFIG_FILE_PATH, calendar);
